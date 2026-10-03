@@ -1,1 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>For My Baccha 🌷</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   BASIC RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:'DM Sans',sans-serif;
+    color:#674b5b;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at 15% 15%,rgba(255,255,255,.9),transparent 25%),
+        radial-gradient(circle at 85% 20%,rgba(255,182,211,.35),transparent 30%),
+        radial-gradient(circle at 50% 90%,rgba(255,210,228,.45),transparent 35%),
+        linear-gradient(135deg,#fff8fb,#ffeaf3,#fff4f8);
+}
+
+/* =========================
+   FLOATING BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.heart,
+.petal,
+.sparkle{
+    position:absolute;
+    opacity:.65;
+    animation:floatAround linear infinite;
+}
+
+.heart{
+    color:#f49abd;
+    font-size:20px;
+}
+
+.petal{
+    color:#ed8eae;
+    font-size:18px;
+}
+
+.sparkle{
+    color:white;
+    font-size:18px;
+    text-shadow:0 0 10px #ff9fc1;
+}
+
+@keyframes floatAround{
+    0%{
+        transform:translateY(110vh) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    85%{
+        opacity:.7;
+    }
+
+    100%{
+        transform:translateY(-15vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen{
+    position:relative;
+    z-index:2;
+
+    min-height:100vh;
+    padding:28px 18px;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.screen.active{
+    display:flex;
+    animation:screenIn .7s ease;
+}
+
+@keyframes screenIn{
+    from{
+        opacity:0;
+        transform:translateY(18px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    width:100%;
+    max-width:650px;
+
+    padding:38px 25px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.68);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:2px solid rgba(255,255,255,.9);
+    border-radius:38px;
+
+    box-shadow:
+        0 25px 70px rgba(188,112,145,.16),
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.script{
+    font-family:'Pacifico',cursive;
+    color:#d8759c;
+}
+
+.title{
+    margin:18px 0 12px;
+
+    font-size:clamp(30px,8vw,52px);
+    line-height:1.15;
+
+    color:#684b5b;
+}
+
+.subtitle{
+    font-size:17px;
+    line-height:1.8;
+    color:#866b7b;
+}
+
+.small{
+    margin-top:10px;
+    font-size:13px;
+    color:#a98c9b;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    border:0;
+    outline:0;
+
+    margin:9px 5px;
+    padding:14px 25px;
+
+    border-radius:999px;
+
+    font-family:inherit;
+    font-size:15px;
+    font-weight:700;
+
+    color:#704d5e;
+
+    background:linear-gradient(135deg,#ffd3e4,#ffc0d8);
+
+    box-shadow:
+        0 10px 25px rgba(215,116,155,.18),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+button:hover{
+    transform:translateY(-4px) scale(1.03);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+.secondary{
+    background:#fff;
+    border:2px solid #ffd5e5;
+}
+
+/* =========================
+   OPENING ENVELOPE
+========================= */
+
+.envelope{
+    width:120px;
+    height:90px;
+
+    margin:0 auto 25px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:linear-gradient(145deg,#ffc8dc,#ffabc9);
+
+    box-shadow:
+        0 18px 40px rgba(211,105,145,.25);
+
+    animation:envelopeFloat 2.5s ease-in-out infinite;
+}
+
+.envelope:before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:0;
+    height:0;
+
+    border-left:60px solid transparent;
+    border-right:60px solid transparent;
+    border-top:48px solid #ffdfeb;
+}
+
+.envelope span{
+    position:relative;
+    z-index:2;
+    font-size:38px;
+    margin-top:20px;
+}
+
+@keyframes envelopeFloat{
+    50%{
+        transform:translateY(-8px) rotate(1deg);
+    }
+}
+
+/* =========================
+   BOUQUET
+========================= */
+
+.bouquet-wrap{
+    margin:10px auto 28px;
+    width:220px;
+    height:230px;
+
+    position:relative;
+
+    animation:bouquetFloat 3s ease-in-out infinite;
+}
+
+@keyframes bouquetFloat{
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+.flower{
+    position:absolute;
+
+    width:68px;
+    height:68px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:42px;
+
+    filter:drop-shadow(0 8px 8px rgba(200,100,140,.18));
+
+    animation:bloom 2s ease-in-out infinite;
+}
+
+.flower:nth-child(1){
+    top:15px;
+    left:78px;
+}
+
+.flower:nth-child(2){
+    top:55px;
+    left:25px;
+    animation-delay:.3s;
+}
+
+.flower:nth-child(3){
+    top:55px;
+    right:22px;
+    animation-delay:.6s;
+}
+
+.flower:nth-child(4){
+    top:105px;
+    left:62px;
+    animation-delay:.9s;
+}
+
+.flower:nth-child(5){
+    top:105px;
+    right:53px;
+    animation-delay:1.2s;
+}
+
+@keyframes bloom{
+    50%{
+        transform:scale(1.08) rotate(3deg);
+    }
+}
+
+.stem{
+    position:absolute;
+
+    width:7px;
+    height:105px;
+
+    background:linear-gradient(#78a96f,#4e8a59);
+
+    border-radius:10px;
+
+    transform-origin:top;
+
+    top:105px;
+    left:106px;
+}
+
+.stem.left{
+    transform:rotate(-24deg);
+}
+
+.stem.right{
+    transform:rotate(24deg);
+}
+
+.ribbon{
+    position:absolute;
+
+    bottom:13px;
+    left:77px;
+
+    font-size:55px;
+
+    transform:rotate(180deg);
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+    position:relative;
+
+    margin:25px 0;
+
+    padding:28px 23px;
+
+    text-align:left;
+
+    background:
+        linear-gradient(rgba(255,255,255,.9),rgba(255,248,251,.95));
+
+    border-radius:25px;
+
+    border:2px solid #ffdce9;
+
+    box-shadow:
+        0 15px 35px rgba(180,105,135,.1);
+}
+
+.letter:before{
+    content:"♡";
+
+    position:absolute;
+    top:12px;
+    right:18px;
+
+    font-size:25px;
+    color:#f4a2bf;
+}
+
+.letter p{
+    margin-bottom:17px;
+
+    font-size:15px;
+    line-height:1.9;
+}
+
+.letter .signature{
+    margin-top:25px;
+
+    text-align:right;
+
+    font-family:'Pacifico',cursive;
+    font-size:22px;
+
+    color:#d4779c;
+}
+
+/* =========================
+   HEART
+========================= */
+
+.bigHeart{
+    font-size:90px;
+
+    filter:drop-shadow(0 12px 20px rgba(220,100,145,.18));
+
+    animation:heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.13);
+    }
+}
+
+/* =========================
+   FORGIVE BUTTON AREA
+========================= */
+
+.forgive-box{
+    margin-top:22px;
+    padding:22px;
+
+    background:rgba(255,235,243,.6);
+
+    border-radius:25px;
+
+    border:2px dashed #f4b4cc;
+}
+
+.forgive-box h3{
+    margin-bottom:8px;
+    color:#754f61;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    padding:40px 20px;
+}
+
+.final h1{
+    font-family:'Pacifico',cursive;
+    font-size:clamp(34px,9vw,55px);
+    color:#d66f98;
+}
+
+.final p{
+    margin:15px 0;
+    line-height:1.9;
+}
+
+/* =========================
+   MINI DECORATION
+========================= */
+
+.divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    margin:20px 0;
+
+    color:#e99ab8;
+}
+
+.divider:before,
+.divider:after{
+    content:"";
+    height:2px;
+    width:60px;
+    background:#f3bfd2;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .screen{
+        padding:18px 12px;
+    }
+
+    .card{
+        padding:30px 17px;
+        border-radius:30px;
+    }
+
+    .title{
+        font-size:34px;
+    }
+
+    .subtitle{
+        font-size:15px;
+    }
+
+    .letter{
+        padding:24px 18px;
+    }
+
+    .letter p{
+        font-size:14px;
+    }
+
+    .bouquet-wrap{
+        transform:scale(.9);
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= BACKGROUND ================= -->
+
+<div class="background">
+
+    <div class="heart" style="left:5%;animation-duration:12s;">♡</div>
+    <div class="heart" style="left:17%;animation-duration:16s;animation-delay:2s;">♥</div>
+    <div class="heart" style="left:31%;animation-duration:13s;animation-delay:5s;">♡</div>
+    <div class="heart" style="left:49%;animation-duration:18s;animation-delay:1s;">♥</div>
+    <div class="heart" style="left:68%;animation-duration:14s;animation-delay:4s;">♡</div>
+    <div class="heart" style="left:82%;animation-duration:17s;animation-delay:7s;">♥</div>
+    <div class="heart" style="left:94%;animation-duration:15s;animation-delay:3s;">♡</div>
+
+    <div class="petal" style="left:10%;animation-duration:11s;animation-delay:1s;">🌸</div>
+    <div class="petal" style="left:40%;animation-duration:15s;animation-delay:4s;">🌷</div>
+    <div class="petal" style="left:72%;animation-duration:13s;animation-delay:2s;">🌸</div>
+    <div class="petal" style="left:88%;animation-duration:17s;animation-delay:6s;">🌷</div>
+
+    <div class="sparkle" style="left:25%;animation-duration:10s;">✦</div>
+    <div class="sparkle" style="left:58%;animation-duration:14s;animation-delay:3s;">✧</div>
+    <div class="sparkle" style="left:78%;animation-duration:12s;animation-delay:6s;">✦</div>
+
+</div>
+
+
+<!-- ================= SCREEN 1 ================= -->
+
+<section class="screen active" id="home">
+
+<div class="card">
+
+    <div class="envelope">
+        <span>💌</span>
+    </div>
+
+    <div class="script" style="font-size:25px;">
+        for my bacchaaa
+    </div>
+
+    <h1 class="title">
+        I owe you<br>
+        a little sorry...
+    </h1>
+
+    <p class="subtitle">
+        I may have said something stupid.<br>
+        Sooo... I made something for you instead of<br>
+        just typing "sorry" 😭🌷
+    </p>
+
+    <div class="divider">
+        ♡
+    </div>
+
+    <button onclick="showScreen('bouquet')">
+        open your surprise 💗
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ================= SCREEN 2 ================= -->
+
+<section class="screen" id="bouquet">
+
+<div class="card">
+
+    <div class="script" style="font-size:25px;">
+        something pretty for you
+    </div>
+
+    <h1 class="title" style="font-size:34px;">
+        A bouquet 🌷
+    </h1>
+
+    <div class="bouquet-wrap">
+
+        <div class="stem"></div>
+        <div class="stem left"></div>
+        <div class="stem right"></div>
+
+        <div class="flower">🌸</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌹</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌷</div>
+
+        <div class="ribbon">🎀</div>
+
+    </div>
+
+    <p class="subtitle">
+        These flowers can't actually say sorry...<br>
+        so I'll have to do it myself. 🥺
+    </p>
+
+    <button onclick="showScreen('letter')">
+        read my letter 💌
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ================= SCREEN 3 ================= -->
+
+<section class="screen" id="letter">
+
+<div class="card">
+
+    <div class="script" style="font-size:24px;">
+        okay... listen to me 🥺
+    </div>
+
+    <h1 class="title" style="font-size:34px;">
+        I'm genuinely sorry.
+    </h1>
+
+    <div class="letter">
+
+        <p>
+            Bacchaaa, I know maine jo baat boli thi woh
+            <b>stupid thi</b>. Maine woh mazaak mein boli,
+            but ab sochta hoon toh samajh aa raha hai ki
+            woh tumhe kitni buri lag sakti thi.
+        </p>
+
+        <p>
+            Mera intention tumhe hurt karna bilkul nahi tha,
+            but honestly, <b>intention excuse nahi hai.</b>
+            Mujhe woh baat bolni hi nahi chahiye thi.
+        </p>
+
+        <p>
+            Tum mere liye important ho, aur main kabhi nahi
+            chahta ki meri bakwaas ki wajah se tum apne
+            baare mein bura feel karo.
+        </p>
+
+        <p>
+            So no defending myself, no "arre mazaak tha",
+            no excuses. Bas ek proper
+            <b>I'm sorry.</b> 🥺🌷
+        </p>
+
+        <p>
+            I know ek website bana dene se meri galti magically
+            disappear nahi ho jaayegi 😭 but I wanted to do
+            something that actually shows ki
+            <b>I mean my apology.</b>
+        </p>
+
+        <p>
+            And haan... next time bolne se pehle
+            dimaag use karunga. Promise. 😭🤝🏻
+        </p>
+
+        <div class="signature">
+            yours,<br>
+            the idiot who messed up ♡
+        </div>
+
+    </div>
+
+    <button onclick="showScreen('promise')">
+        one more thing... 🌷
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ================= SCREEN 4 ================= -->
+
+<section class="screen" id="promise">
+
+<div class="card">
+
+    <div class="bigHeart">
+        🫶🏻
+    </div>
+
+    <div class="script" style="font-size:25px;">
+        one tiny promise
+    </div>
+
+    <h1 class="title" style="font-size:34px;">
+        I'll be more careful
+    </h1>
+
+    <p class="subtitle">
+        Tumse mazaak karna mujhe pasand hai,
+        tumhe tease karna bhi 😭
+        <br><br>
+        But I don't ever want my jokes to cross a line
+        and actually hurt you.
+    </p>
+
+    <div class="forgive-box">
+
+        <h3>
+            Sooo...
+        </h3>
+
+        <p>
+            thoda sa gussa kam karogi? 🥺👉🏻👈🏻
+        </p>
+
+        <button onclick="showScreen('forgiven')">
+            okay, maaf kiya 🥺💗
+        </button>
+
+        <button class="secondary" onclick="makeMeTryAgain()">
+            abhi aur manao 😾
+        </button>
+
+        <p id="tryAgainText" class="small"></p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SCREEN 5 ================= -->
+
+<section class="screen" id="forgiven">
+
+<div class="card final">
+
+    <div class="bigHeart">
+        💗
+    </div>
+
+    <div class="script">
+        yayyy...
+    </div>
+
+    <h1>
+        Thank you, bacchaaa 🌷
+    </h1>
+
+    <p>
+        I promise I'll think twice before saying something
+        that could hurt you.
+    </p>
+
+    <p>
+        Ab itna bada sorry accept kar liya hai toh...
+        ek smile toh banti hai na? 🥺
+    </p>
+
+    <div class="divider">
+        ♡ ✦ ♡
+    </div>
+
+    <p>
+        <b>
+            No more stupid jokes that actually hurt you.
+        </b>
+    </p>
+
+    <p>
+        Now come here 🫂
+    </p>
+
+    <button onclick="showScreen('home')">
+        read it again ♡
+    </button>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   SCREEN CHANGER
+========================= */
+
+function showScreen(id){
+
+    document.querySelectorAll('.screen').forEach(function(screen){
+        screen.classList.remove('active');
+    });
+
+    const target = document.getElementById(id);
+
+    if(target){
+        target.classList.add('active');
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+    createSparkles();
+}
+
+
+/* =========================
+   EXTRA SPARKLES
+========================= */
+
+function createSparkles(){
+
+    for(let i=0;i<8;i++){
+
+        const sparkle = document.createElement("div");
+
+        sparkle.textContent = "✦";
+
+        sparkle.style.position = "fixed";
+        sparkle.style.left = Math.random()*100 + "vw";
+        sparkle.style.top = Math.random()*100 + "vh";
+        sparkle.style.color = "#f29cba";
+        sparkle.style.fontSize = (12 + Math.random()*15) + "px";
+        sparkle.style.pointerEvents = "none";
+        sparkle.style.zIndex = "20";
+
+        document.body.appendChild(sparkle);
+
+        sparkle.animate(
+            [
+                {
+                    transform:"scale(0) rotate(0deg)",
+                    opacity:0
+                },
+                {
+                    transform:"scale(1.3) rotate(180deg)",
+                    opacity:1
+                },
+                {
+                    transform:"scale(0) rotate(360deg)",
+                    opacity:0
+                }
+            ],
+            {
+                duration:900 + Math.random()*500,
+                easing:"ease-out"
+            }
+        );
+
+        setTimeout(function(){
+            sparkle.remove();
+        },1500);
+    }
+}
+
+
+/* =========================
+   "MAKE ME TRY AGAIN"
+========================= */
+
+let tries = 0;
+
+function makeMeTryAgain(){
+
+    const text = document.getElementById("tryAgainText");
+
+    tries++;
+
+    const messages = [
+
+        "Okay okayyy 😭 I'll try harder...",
+
+        "Bacchaaa pleaseee 🥺🌷",
+
+        "I brought flowers AND wrote a whole letter 😭",
+
+        "Last chance... forgive this idiot? 🥺👉🏻👈🏻",
+
+        "Okay fine... I'll keep apologising 😭💗"
+
+    ];
+
+    text.textContent =
+        messages[Math.min(tries-1,messages.length-1)];
+
+    createSparkles();
+}
+
+</script>
+
+
+</body>
+</html>
